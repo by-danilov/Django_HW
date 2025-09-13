@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Django Каталог{% endblock %}</title>
+</head>
+<body>
+    {% include 'catalog/includes/menu.html' %}
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

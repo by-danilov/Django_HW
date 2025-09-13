@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Контакты</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container text-center mt-5">
-        <h1 class="display-4">Наши контакты</h1>
-        <p class="lead">
-            Телефон: +7-922-110-00-06<br>
-            Email: danilovn1@mail.ru<br>
-            Telegram: @by_danilov
-        </p>
-        <a href="/" class="btn btn-secondary">На главную</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Свяжитесь с нами</h1>
+        <p>Наш адрес: г. Москва, ул. Ленина, д. 1</p>
+        <p>Телефон: +7 (999) 123-45-67</p>
+        <p>Email: contact@example.com</p>
     </div>
-</body>
-</html>
+{% endblock %}
