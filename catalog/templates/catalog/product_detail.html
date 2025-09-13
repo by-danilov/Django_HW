@@ -15,11 +15,9 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h1 class="card-title">{{ product.name }}</h1>
-                        <p class="card-text"><strong>Описание:</strong> {{ product.description }}</p>
+                        <p class="card-text">{{ product.description }}</p>
                         <p class="card-text"><strong>Цена:</strong> {{ product.price }} руб.</p>
                         <p class="card-text"><strong>Категория:</strong> {{ product.category.name }}</p>
-                        <p class="card-text"><small class="text-muted">Создан: {{ product.created_at|date:"d M Y" }}</small></p>
-                        <p class="card-text"><small class="text-muted">Обновлен: {{ product.updated_at|date:"d M Y" }}</small></p>
                         <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Назад к списку</a>
                     </div>
                 </div>

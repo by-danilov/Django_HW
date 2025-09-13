@@ -5,18 +5,18 @@
 
 {% block content %}
     <div class="container mt-4">
-        <h1>Наши товары</h1>
+        <h1 class="mb-4">Наши товары</h1>
         <div class="row">
             {% for product in products %}
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm h-100">
+                    <div class="card h-100 shadow-sm">
                         {% if product.image %}
                             <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="max-height: 200px; object-fit: cover;">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description|truncatechars:100 }}</p>
-                            <a href="{% url 'product_detail' pk=product.pk %}" class="btn btn-primary">Подробнее</a>
+                            <p class="card-text text-muted">{{ product.description|truncatechars:100 }}</p>
+                            <a href="{% url 'product_detail' pk=product.pk %}" class="btn btn-primary mt-auto">Подробнее</a>
                         </div>
                     </div>
                 </div>
