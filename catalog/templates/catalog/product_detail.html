@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}" style="height: 100%; object-fit: cover;">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ product.name }}</h1>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><strong>Цена:</strong> {{ product.price }} руб.</p>
+                        <p class="card-text"><strong>Категория:</strong> {{ product.category.name }}</p>
+                        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
