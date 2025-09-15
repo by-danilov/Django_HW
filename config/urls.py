@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('catalog.urls')), # Это важно!
+    path('', include('catalog.urls')),
+    path('blogs/', include('blog.urls', namespace='blog')), # Подключаем URL-адреса блога
 ]
 
 if settings.DEBUG:
