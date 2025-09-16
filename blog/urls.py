@@ -1,5 +1,3 @@
-# blog/urls.py
-
 from django.urls import path
 from blog.views import BlogEntryListView, BlogEntryDetailView, BlogEntryCreateView, BlogEntryUpdateView, BlogEntryDeleteView
 
