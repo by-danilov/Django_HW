@@ -1,24 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, TemplateView
 
+from catalog.models import Product
 
-def home_page(request):
-    products = Product.objects.all()  # Получаем все продукты из БД
-    context = {
-        'products': products
-    }
-    return render(request, 'catalog/home.html', context)
+class ProductListView(ListView):
+    model = Product
+    template_name = 'catalog/home.html'
+    context_object_name = 'products'
 
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'catalog/product_detail.html'
 
-def contacts_page(request):
-    # Эта функция будет рендерить страницу контактов
-    return render(request, 'catalog/contacts.html')
-
-
-def product_detail(request, pk):
-    # Используем get_object_or_404, чтобы получить товар или вернуть ошибку 404, если он не найден
-    product = get_object_or_404(Product, pk=pk)
-    context = {
-        'product': product
-    }
-    return render(request, 'catalog/product_detail.html', context)
+class ContactsTemplateView(TemplateView):
+    template_name = 'catalog/contacts.html'
