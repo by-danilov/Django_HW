@@ -19,6 +19,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'catalog',
     'django_extensions',
     'blog',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Настройки электронной почты
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'u.uchebnaja@yandex.ru'
+EMAIL_HOST_PASSWORD = 'xswrlfhrwqtgummw'
+DEFAULT_FROM_EMAIL = 'u.uchebnaja@yandex.ru'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/users/login/'
