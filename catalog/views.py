@@ -1,13 +1,12 @@
-# catalog/views.py
-
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from .services import get_products_by_category
 
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm
 
 
@@ -96,3 +95,23 @@ class ProductUnpublishView(PermissionRequiredMixin, View):
 
 class ContactsView(ListView):
     pass
+
+
+class CategoryProductListView(ListView):
+    """
+    Отображает список продуктов для конкретной категории,
+    используя сервисную функцию с кешированием.
+    """
+    template_name = 'catalog/category_products.html'
+    context_object_name = 'product_list'
+
+    def get_queryset(self):
+        category_pk = self.kwargs.get('pk')
+
+        queryset = get_products_by_category(category_pk)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = get_object_or_404(Category, pk=self.kwargs.get('pk'))
+        return context

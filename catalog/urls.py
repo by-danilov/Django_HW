@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page # <-- НОВЫЙ ИМПОРТ
 from . import views
 
 urlpatterns = [
@@ -9,4 +10,6 @@ urlpatterns = [
     path('product/update/<int:pk>/', views.ProductUpdateView.as_view(), name='product_update'),
     path('product/delete/<int:pk>/', views.ProductDeleteView.as_view(), name='product_delete'),
     path('product/unpublish/<int:pk>/', views.ProductUnpublishView.as_view(), name='product_unpublish'),
+    path('product/<int:pk>/', cache_page(60)(views.ProductDetailView.as_view()), name='product_detail'),
+    path('category/<int:pk>/products/', views.CategoryProductListView.as_view(), name='category_products'),
 ]

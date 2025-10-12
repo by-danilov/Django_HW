@@ -137,3 +137,33 @@ DEFAULT_FROM_EMAIL = 'u.uchebnaja@yandex.ru'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
+
+
+# --- НАСТРОЙКИ REDIS / КЕШИРОВАНИЕ ---
+CACHE_ENABLED = True
+
+if CACHE_ENABLED:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379/1",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "TIMEOUT": 300,
+            }
+        },
+        "low_level_cache": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": "redis://127.0.0.1:6379/2",
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "TIMEOUT": 60,
+            }
+        }
+    }
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
